@@ -9,7 +9,7 @@ import Communitiy from "./pages/Communitiy";
 function App() {
   return (
     <>
-      <div className="flex min-h-screen bg-white dark:bg-gradient-to-b dark:from-[#2A2A2A] dark:to-[#1E1E1E] ">
+      <div className="flex min-h-screen bg-white dark:bg-gradient-to-b from-[#1a181b] to-[#0f0e10] transition-all duration-500 ">
         <Sidebar />
         {/* 2. Wrap Routes in a main tag that grows to fill the space */}
         <main className="flex-grow p-4 md:p-6">

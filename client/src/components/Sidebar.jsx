@@ -9,7 +9,7 @@ const Sidebar = () => {
   const [search, setSearch] = useState("");
   return (
     <div className="flex flex-col h-screen p-5 min-w-72 
-  bg-white dark:bg-gradient-to-b dark:from-[#2A2A2A] dark:to-[#1E1E1E] border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-10">
+  bg-white dark:bg-gradient-to-b from-[#1a181b] to-[#0f0e10] border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-10">
       {/* logo */}
       <img
         src={theme === "dark" ? assets.logo_full : assets.logo_full_dark}
@@ -127,6 +127,17 @@ const Sidebar = () => {
           <span className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4"></span>
         </label>
       </div>
+
+
+      {/* User Account */}
+      <div 
+        className="flex items-center gap-3 p-3 mt-4 border border-gray-300 rounded-md cursor-pointer dark:border-white /15 group "
+      >
+        <img src={assets.user_icon} className="rounded-full w-7 invert-0 dark:invert-0" alt="" />
+          <p className="invert-0 dark:invert">{user? user.name : 'Login your account'}</p>
+            {user && <img src={assets.logout_icon}  className="absolute hidden h-5 cursor-pointer right-8 invert dark:invert-0 group-hover:block"/>}
+      </div>
+
     </div>
   );
 };
