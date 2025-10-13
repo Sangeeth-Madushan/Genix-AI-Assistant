@@ -3,13 +3,13 @@ import { useAppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import moment from "moment";
 
-const Sidebar = () => {
+const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
   const { user, chats, setSelectedChat, theme, setTheme, navigate } = useAppContext();
     
   const [search, setSearch] = useState("");
   return (
-    <div className="flex flex-col h-screen p-5 min-w-72 
-  bg-white dark:bg-gradient-to-b from-[#1a181b] to-[#0f0e10] border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-10">
+    <div className={`flex flex-col h-screen p-5 min-w-72 
+  bg-white dark:bg-gradient-to-b from-[#1a181b] to-[#0f0e10] border-r border-[#80609F]/30 backdrop-blur-3xl transition-all duration-500 max-md:absolute left-0 z-10 ${!isMenuOpen && 'max-md:-translate-x-full'}`}>
       {/* logo */}
       <img
         src={theme === "dark" ? assets.logo_full : assets.logo_full_dark}
@@ -18,7 +18,7 @@ const Sidebar = () => {
       />
 
       {/* New Chat Button */}
-      <button className="flex items-center justify-center w-full py-2 mt-10 text-white bg-gradient-to-r from-[#A456F7] to-[#2404a5] text-sm rounded-md cursor-pointer">
+      <button onClick={()=>{setIsMenuOpen(false)}} className="flex items-center justify-center w-full py-2 mt-10 text-white bg-gradient-to-r from-[#A456F7] to-[#2404a5] text-sm rounded-md cursor-pointer">
         <span className="mr-2 text-xl">+</span> New Chat
       </button>
 
@@ -51,6 +51,7 @@ const Sidebar = () => {
           )
           .map((chat) => (
             <div
+              onClick={()=>{navigate('/'); setSelectedChat(chat); setIsMenuOpen(false);}}
               key={chat._id}
               className="flex justify-between p-2 px-4 border border-gray-300 rounded-md cursor-pointer dark:border-white /15 group "
             >
@@ -77,7 +78,7 @@ const Sidebar = () => {
 
       <div
         onClick={() => {
-          navigate("/community");
+          navigate("/community"); setIsMenuOpen(false);
         }}
         className="flex items-center gap-2 p-3 mt-4 transition-transform duration-300 ease-in-out border border-gray-300 rounded-md cursor-pointer hover:scale-103 dark:border-white /15 hover:scale-105"
       >
@@ -91,7 +92,7 @@ const Sidebar = () => {
 
       <div
         onClick={() => {
-          navigate("/credits");
+          navigate("/credits"); setIsMenuOpen(false);
         }}
         className="flex items-center gap-2 p-3 mt-4 transition-transform duration-300 ease-in-out border border-gray-300 rounded-md cursor-pointer hover:scale-103 dark:border-white /15 hover:scale-105"
       >
@@ -137,6 +138,8 @@ const Sidebar = () => {
           <p className="invert-0 dark:invert">{user? user.name : 'Login your account'}</p>
             {user && <img src={assets.logout_icon}  className="absolute hidden h-5 cursor-pointer right-8 invert dark:invert-0 group-hover:block"/>}
       </div>
+
+      <img onClick={()=>setIsMenuOpen(false)} src={assets.close_icon} className="absolute w-5 h-5 cursor-pointer top-3 right-3 md:hidden invert dark:invert-0" />
 
     </div>
   );
