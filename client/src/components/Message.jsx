@@ -15,10 +15,10 @@ const Message = ({ message }) => {
   return (
     <div>
       {message.role === 'user' ? (
-        // 🧑 User message (right side)
+        //  User message 
         <div className='flex items-start justify-end gap-2 my-4'>
           <div className='flex flex-col items-end'>
-            <p className='p-3 text-sm text-white bg-[#A456F7] rounded-lg max-w-prose'>
+            <p className='p-3 text-base text-white bg-[#A456F7] rounded-lg max-w-prose'>
               {message.content}
             </p>
             <span className='mt-1 text-xs text-gray-400 dark:text-[#B1A6C0]'>
@@ -28,9 +28,9 @@ const Message = ({ message }) => {
           <img src={assets.user_icon} className='w-8 rounded-full' />
         </div>
       ) : (
-        // 🤖 Bot message (left side)
+        // Bot message
         <div className='flex items-start justify-start gap-2 my-4'>
-          <img src={assets.bot_icon} className='w-8 rounded-full' /> {/* optional bot icon */}
+          <img src={assets.bot_icon} className='w-8 rounded-full' /> 
           <div className='flex flex-col items-start'>
             {message.isImage ? (
               <img
@@ -38,7 +38,7 @@ const Message = ({ message }) => {
                 className='w-full max-w-md rounded-md'
               />
             ) : (
-              <div className='p-3 text-sm rounded-lg bg-gray-200 dark:bg-[#2E2A32] dark:text-primary max-w-prose reset-tw'>
+              <div className='p-3 text-base rounded-lg bg-[#f9f9f9] dark:bg-transparent dark:text-[#f9f9f9] max-w-prose reset-tw'>
                {/* Markdown format AI response */}
                <Markdown>{message.content}</Markdown> 
               </div>
