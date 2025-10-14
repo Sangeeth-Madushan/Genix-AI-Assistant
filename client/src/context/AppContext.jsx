@@ -15,7 +15,7 @@ export const AppContextProvider = ({children})=>{
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
    
     const fetchUser = async () =>{
-        setUser(dummyUserData)
+        setUser()
 
     }
 
