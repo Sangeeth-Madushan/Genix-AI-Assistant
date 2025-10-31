@@ -10,19 +10,22 @@ import Loading from "./pages/Loading";
 import { useAppContext } from "./context/AppContext";
 import Login from "./pages/Login";
 import StarBouncingAnimation from "./components/FinisherHeader";
+import {Toaster} from 'react-hot-toast';
 
 function App() {
-  const { user } = useAppContext();
+  const { user, loadingUser } = useAppContext();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
-  if (pathname === "/loading") {
+  if (pathname === "/loading" || loadingUser) {
     return <Loading />;
   }
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
+      
       {!isMenuOpen && (
         <img
           src={assets.menu_icon}
